@@ -16,7 +16,7 @@ const ROLES = {
   "Özgür Özer":      "onay",
 };
 const USERS        = Object.keys(ROLES);
-const canEnter     = (u) => ["giris","giris_onay","karar"].includes(ROLES[u]);
+const canEnter     = (u) => ["giris","giris_onay","onay"].includes(ROLES[u]);
 const canApprove   = (u) => ["onay","giris_onay","karar"].includes(ROLES[u]);
 const canDecide    = (u) => ROLES[u] === "karar";
 const ROLE_LABELS  = {
@@ -324,15 +324,11 @@ function LoginScreen({ onSelect }) {
     <div style={S.loginBg}>
       <div style={S.loginBox}>
         <div style={S.loginLogo}>GÜRSÜT</div>
-        <div style={S.loginTitle}>Sipariş Onay Sistemi</div>
         <div style={S.loginSub}>Kim olduğunuzu seçin:</div>
         <div style={S.loginUsers}>
           {USERS.map(u => (
             <button key={u} style={S.loginUserBtn} onClick={() => onSelect(u)}>
               <span>{u}</span>
-              <span style={{ ...S.loginRoleBadge, background: ROLE_LABELS[ROLES[u]].color }}>
-                {ROLE_LABELS[ROLES[u]].label}
-              </span>
             </button>
           ))}
         </div>
